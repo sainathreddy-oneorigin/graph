@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Stacked Bar Chart</title>
+
+  <link href="../../assets/styles.css" rel="stylesheet" />
+
+  <style>
+    #chart {
+      max-width: 650px;
+      margin: 35px auto;
+    }
+  </style>
+
+  <script>
+    window.Promise ||
+      document.write(
+        '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
+      )
+    window.Promise ||
+      document.write(
+        '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
+      )
+    window.Promise ||
+      document.write(
+        '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
+      )
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <script src="../../../dist/apexcharts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+
+
+
+</head>
+
+<body>
+
+  <div id="app">
+    <div id="chart">
+      <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
+    </div>
+  </div>
+
+  <!-- Below element is just for displaying source code. it is not required. DO NOT USE -->
+  <div id="html">
+    &lt;div id=&quot;chart&quot;&gt;
+    &lt;apexchart type=&quot;bar&quot; height=&quot;350&quot; :options=&quot;chartOptions&quot;
+    :series=&quot;series&quot;&gt;&lt;/apexchart&gt;
+    &lt;/div&gt;
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      components: {
+        apexchart: VueApexCharts,
+      },
+      data: {
+
+        series: [{
+          name: 'Current Grade',
+          data: [0.93, 0.22, 0.61, 0.91, 0.111 + 0.22, 0.16, 0.31]
+        }, {
+          name: 'Grade',
+          data: [0.24, 0.24, 1, 1, 1, 1, 1]
+        }, {
+          name: 'Content Mastery ',
+          data: [1, 0.56, 1, 1, 1, 1, 1]
+        }, {
+          name: '	Yellowdig Discussion',
+          data: [1, 0.77, 1, 1, 1, 1, 1]
+        }, {
+          name: '	Quizzes',
+          data: [1, 0.22, 1, 1, 1, 1, 1]
+        }],
+        chartOptions: {
+          chart: {
+            type: 'bar',
+            height: 350,
+            stacked: true,
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false,
+            },
+          },
+          stroke: {
+            width: 1,
+            colors: ['#fff']
+          },
+          title: {
+            text: 'Students Score'
+          },
+          xaxis: {
+            categories: [1, 2, 3, 4, 5, 6, 7],
+            labels: {
+              formatter: function (val) {
+                return "Student " + val
+              }
+            }
+          },
+          yaxis: {
+            title: {
+              text: undefined
+            },
+          },
+          tooltip: {
+            y: {
+              formatter: function (val) {
+                return val
+              }
+            }
+          },
+          fill: {
+            opacity: 1
+          },
+          legend: {
+            position: 'top',
+            horizontalAlign: 'left',
+            offsetX: 40
+          }
+        },
+
+
+      },
+
+    })
+  </script>
+
+</body>
+
+</html>
